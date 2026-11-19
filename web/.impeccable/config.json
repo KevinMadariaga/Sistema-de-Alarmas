@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "src/components/AlarmTable.tsx"
+        ],
+        "createdAt": "2026-11-18T14:35:15.407Z",
+        "reason": "Claude triage: border-l marks alert level on data-table rows (requirement: rows identifiable by alert level), not card decoration"
+      }
+    ]
+  }
+}

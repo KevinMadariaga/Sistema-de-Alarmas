@@ -1,0 +1,117 @@
+@import "tailwindcss";
+
+/*
+ * Paleta centralizada por función. Los componentes usan SOLO estos nombres (bg-brand-600, text-critical-800…).
+ * Escalas propias (no las de Tailwind por defecto): tonos sobrios de herramienta de monitoreo.
+ * Para cambiar un color en toda la app, cambia aquí sus valores. Neutros (fondos, bordes, texto): escala slate.
+ * Colores fuera de CSS (Excel, gráfico de torta, theme-color): src/lib/theme.ts.
+ */
+@theme {
+  /* Exportar a Excel: verde de Microsoft Excel */
+  --color-excel-600: #217346;
+  --color-excel-700: #185c37;
+  /* Marca: azul corporativo (botones primarios, foco, selección) */
+  --color-brand-50: #eef4fc;
+  --color-brand-100: #d6e4f7;
+  --color-brand-200: #adc8ee;
+  --color-brand-300: #7aa6e2;
+  --color-brand-400: #4c84d4;
+  --color-brand-500: #1f65c6;
+  --color-brand-600: #0c5bb5;
+  --color-brand-700: #094a93;
+  --color-brand-800: #083b74;
+  --color-brand-900: #072e59;
+  --color-brand-950: #041b36;
+  /* CRÍTICO: rojo sobrio */
+  --color-critical-50: #fdf0ef;
+  --color-critical-100: #fadbd8;
+  --color-critical-200: #f4b4ae;
+  --color-critical-300: #ec867d;
+  --color-critical-400: #e05a4f;
+  --color-critical-500: #cc3a2e;
+  --color-critical-600: #b42a20;
+  --color-critical-700: #93221a;
+  --color-critical-800: #741c16;
+  --color-critical-900: #5a1712;
+  --color-critical-950: #330c09;
+  /* WARN y avisos: ámbar ocre */
+  --color-warn-50: #fef7e6;
+  --color-warn-100: #fdebc2;
+  --color-warn-200: #fad58a;
+  --color-warn-300: #f5bc50;
+  --color-warn-400: #eda22a;
+  --color-warn-500: #d98b12;
+  --color-warn-600: #b8720c;
+  --color-warn-700: #93590c;
+  --color-warn-800: #74460f;
+  --color-warn-900: #5c3810;
+  --color-warn-950: #331e06;
+  /* NORMAL y confirmaciones: verde apagado */
+  --color-ok-50: #edf7f1;
+  --color-ok-100: #d3ecdd;
+  --color-ok-200: #a8d8bb;
+  --color-ok-300: #73be93;
+  --color-ok-400: #47a06f;
+  --color-ok-500: #2e8556;
+  --color-ok-600: #236c45;
+  --color-ok-700: #1d5638;
+  --color-ok-800: #18452e;
+  --color-ok-900: #133826;
+  --color-ok-950: #0a1f15;
+  /* Errores y acciones destructivas (mismo rojo que CRÍTICO) */
+  --color-danger-50: #fdf0ef;
+  --color-danger-100: #fadbd8;
+  --color-danger-200: #f4b4ae;
+  --color-danger-300: #ec867d;
+  --color-danger-400: #e05a4f;
+  --color-danger-500: #cc3a2e;
+  --color-danger-600: #b42a20;
+  --color-danger-700: #93221a;
+  --color-danger-800: #741c16;
+  --color-danger-900: #5a1712;
+  --color-danger-950: #330c09;
+}
+
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* Sin retardo de doble toque en controles táctiles */
+button,
+a,
+label,
+select,
+[role="radio"] {
+  touch-action: manipulation;
+}
+
+body {
+  background: var(--color-slate-100);
+  color: var(--color-slate-800);
+}
+
+@layer components {
+  .btn-primary,
+  .btn-secondary,
+  .btn-excel {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-3.5 py-2 text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 disabled:cursor-not-allowed disabled:opacity-40;
+  }
+  .btn-primary {
+    @apply bg-brand-600 text-white hover:bg-brand-500;
+  }
+  .btn-excel {
+    @apply bg-excel-600 text-white hover:bg-excel-700 focus-visible:outline-excel-600;
+  }
+  .btn-secondary {
+    @apply bg-white text-slate-700 ring-1 ring-slate-300 hover:bg-slate-50;
+  }
+  .btn-icon {
+    @apply rounded-lg p-1.5 ring-1 ring-slate-200 hover:bg-slate-100 disabled:opacity-30 disabled:hover:bg-transparent;
+  }
+}
+
+@keyframes loader {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(300%); }
+}
