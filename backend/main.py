@@ -7,6 +7,7 @@ paginación se resuelven en SQL con la hora actual. También arma el resumen del
 """
 import json
 import math
+import os
 import re
 import unicodedata
 from contextlib import asynccontextmanager
@@ -45,7 +46,9 @@ app = FastAPI(title="Sistema de Alarmas", lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000"],
+    # CORS_ORIGINS: dominios extra separados por coma (p. ej. https://mi-app.vercel.app)
+    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000"]
+    + [o.strip().rstrip("/") for o in os.getenv("CORS_ORIGINS", "").split(",") if o.strip()],
     allow_methods=["*"],
     allow_headers=["*"],
 )
